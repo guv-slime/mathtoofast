@@ -1,7 +1,11 @@
+import Header from "./components/Header"
+import Quiz from "./components/Quiz"
+
 function App() {
   return (
     <>
-      <h1 className=''>MATHTOOFAST</h1>
+      <Header />
+      <Quiz />
     </>
   )
 }

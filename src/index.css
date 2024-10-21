@@ -1,3 +1,103 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-red-600
+}
+
+@font-face {
+  font-family: 'Expose';
+  src: url('./assets/fonts/Expose-Regular.woff2/Expose-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.cool-button {
+  width: 200px;
+  height: 100px;
+  background: white;
+  mix-blend-mode: difference;
+
+  animation-duration: 400ms;
+  animation-name: coolanime;
+  animation-iteration-count: infinite;
+  transition: clip-path 0.6s ease-in-out;
+}
+
+@keyframes coolanime {
+  0% {
+    translate: 0px 5px;
+    -webkit-clip-path: polygon(8% 3%, 75% 28%, 97% 86%, 22% 66%);
+    clip-path: polygon(8% 3%, 75% 28%, 97% 86%, 22% 66%);
+  }
+
+  25% {
+    translate: -5px 0px;
+    clip-path: polygon(16% 14%, 78% 41%, 97% 86%, 18% 74%);
+    -webkit-clip-path: polygon(16% 14%, 78% 41%, 97% 86%, 18% 74%);
+  }
+
+  50% {
+    translate: 0px 0px;
+    clip-path: polygon(8% 3%, 75% 55%, 99% 81%, 25% 77%);
+    -webkit-clip-path: polygon(8% 3%, 75% 55%, 99% 81%, 25% 77%);    
+  }
+
+  75% {
+    translate: 5px 0px;
+    clip-path: polygon(8% 3%, 78% 41%, 97% 86%, 25% 77%);
+    -webkit-clip-path: polygon(8% 3%, 78% 41%, 97% 86%, 25% 77%);
+  }
+
+  100% {
+    translate: 0px 5px;
+    -webkit-clip-path: polygon(8% 3%, 75% 28%, 97% 86%, 22% 66%);
+    clip-path: polygon(8% 3%, 75% 28%, 97% 86%, 22% 66%);
+  }
+}
+
+.warm-button {
+  width: 200px;
+  height: 100px;
+  background: red;
+  -webkit-clip-path: polygon(16% 24%, 100% 0, 81% 80%, 0 76%);
+  clip-path: polygon(16% 24%, 100% 0, 81% 80%, 0 76%);
+
+  animation-duration: 1100ms;
+  animation-name: warmanime;
+  animation-iteration-count: infinite;
+  transition: clip-path 1s ease-in-out;
+}
+
+@keyframes warmanime {
+  0% {
+    translate: 0px 0px;
+    -webkit-clip-path: polygon(16% 24%, 100% 0, 81% 80%, 0 76%);
+    clip-path: polygon(16% 24%, 100% 0, 81% 80%, 0 76%);
+  }
+
+  20% {
+    translate: 0px -8px;
+  }
+
+  40% {
+    translate: 8px 0px;
+  }
+  
+  60% {
+    translate: 0px 8px;
+    -webkit-clip-path: polygon(20% 14%, 100% 0, 89% 80%, 0 76%);
+    clip-path: polygon(20% 14%, 100% 0, 89% 80%, 0 76%);
+  }
+
+  80% {
+    translate: -8px 0px;
+  }
+
+  100% {
+    translate: 0 0;
+    -webkit-clip-path: polygon(16% 24%, 100% 0, 81% 80%, 0 76%);
+    clip-path: polygon(16% 24%, 100% 0, 81% 80%, 0 76%);
+  }
+}
