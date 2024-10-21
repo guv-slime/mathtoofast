@@ -1,7 +1,7 @@
 function App() {
   return (
     <>
-      <h1>MATHTOOFAST</h1>
+      <h1 className=''>MATHTOOFAST</h1>
     </>
   )
 }
