@@ -24,6 +24,10 @@ function createProblem (arr) {
   return prob;
 }
 
+function tester () {
+  console.log('hello');
+}
+
 function Quiz () {
   let problem = createProblem(nums);
   let question = printProblem(problem[0], problem[1]);
