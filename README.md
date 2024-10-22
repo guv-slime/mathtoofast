@@ -22,4 +22,11 @@ Based on speed drills from elementary school. As we get older, we rely more on c
 ### Fonts
   - Expose
 
- 
+### Card
+  - Starts out as a card flipped over
+  - Menu options to start the game
+  - flips and starts the quiz 
+
+### Music
+  - something similar to P5 in spirit
+    - Track 12 or 15 from mixtape 
