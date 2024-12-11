@@ -1,6 +1,5 @@
-import Header from "./components/Header"
-import Quiz from "./components/Quiz"
-
+import Header from "./components/Header";
+import Quiz from "./components/Quiz";
 
 function App() {
   return (
@@ -8,7 +7,7 @@ function App() {
       <Header />
       <Quiz />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
