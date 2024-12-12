@@ -30,6 +30,7 @@ function Quiz() {
   const [submission, setSubmission] = useState("");
   const [problem, setProblem] = useState(createProblem(nums));
   const [score, setScore] = useState(0);
+  const [answerLog, setAnswerLog] = useState([]);
   const [feedback, setFeedback] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const question = printProblem(problem[0], problem[1]);
@@ -41,6 +42,9 @@ function Quiz() {
       );
       setScore(score + 1);
       setFeedback("Correct! ✅");
+      answerLog.push(
+        "Correct! " + problem[0] + " + " + problem[1] + " = " + submission
+      );
     } else {
       console.log(
         "Incorrect! " +
@@ -52,8 +56,29 @@ function Quiz() {
           " Correct Answer: " +
           (problem[0] + problem[1])
       );
-      setScore(score - 1);
       setFeedback("Incorrect! ❌");
+      if (submission === "") {
+        answerLog.push(
+          "Incorrect! " +
+            problem[0] +
+            " + " +
+            problem[1] +
+            " = No Input! |" +
+            " Correct Answer: " +
+            (problem[0] + problem[1])
+        );
+      } else {
+        answerLog.push(
+          "Incorrect! " +
+            problem[0] +
+            " + " +
+            problem[1] +
+            " = " +
+            submission +
+            " | Correct Answer: " +
+            (problem[0] + problem[1])
+        );
+      }
     }
 
     setIsVisible(true);
@@ -108,6 +133,14 @@ function Quiz() {
           </div>
         </div>
       </div>
+      <ul>
+        {answerLog.map((item, index) => (
+          <li key={index}>
+            {"Q" + (index + 1) + ": "}
+            {item}
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
