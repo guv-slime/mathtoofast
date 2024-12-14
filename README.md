@@ -1,20 +1,19 @@
 # mathtoofast
 
-Based on speed drills from elementary school. As we get older, we rely more on calculators and even less on mental math. This is meant to be a fun and cool way of improving your math skills.
+Based on speed drills from elementary school. Addition problems only. Use the spacebar or enter to submit your answers quickly. The design is inspired by the Persona 5 UI.
 
 ## Components
 
 - Quiz
   - Problem types
-    - addition & subtraction
+    - addition
+    - subtraction (add later)
   - Timer
     - 30 seconds
 - Score
   - number of correct answers
-- Music
+- Music (add later)
   - mute button
-
-## Style
 
 ### Colors
 
@@ -25,6 +24,7 @@ Based on speed drills from elementary school. As we get older, we rely more on c
 ### Fonts
 
 - Expose
+- Arsenal
 
 ### Card
 
@@ -32,11 +32,12 @@ Based on speed drills from elementary school. As we get older, we rely more on c
 - Menu options to start the game
 - flips and starts the quiz
 
-### Music
+### Music (add later)
 
 - something similar to P5 in spirit
   - Track 12 or 15 from mixtape
 
 ### Bugs
 
-- Time stops when submitting an answer
+- Time stops when submitting an answer (fix later)
+  - Time stops when entering any input

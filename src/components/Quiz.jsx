@@ -2,19 +2,12 @@ import { useEffect, useState } from "react";
 import StartMenu from "./StartMenu";
 import CoolButton from "./CoolButton";
 import Timer from "./Timer";
+import Logs from "./Logs";
+import QuizCard from "./QuizCard";
 
-/*
-  Problem Object?
-  problem {
-    type: addition or subtraction,
-    num1: random number from json #1,
-    num2: random number from json #2,
-    addSolution: num1 + num2,
-    subSolution: num1 - num2,
-    print: num1 + type + num2
-  }
-*/
-const nums = [5, 10, 15, 20, 25, 8, 23, 9, 7, 13];
+const nums = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+];
 
 function printProblem(x, y) {
   return x + "+" + y;
@@ -68,14 +61,11 @@ function Quiz() {
 
   function submitIt() {
     if (!isQuizActive) {
-      alert("Game Over!");
+      alert("Time's Up! Score: " + score);
       return;
     }
 
     if (problem[0] + problem[1] == submission) {
-      console.log(
-        "Correct! " + problem[0] + " + " + problem[1] + " = " + submission
-      );
       setScore(score + 1);
       setFeedback("Correct! ✅");
       // change .push to use setAnswerLog
@@ -83,16 +73,6 @@ function Quiz() {
         "Correct! " + problem[0] + " + " + problem[1] + " = " + submission
       );
     } else {
-      console.log(
-        "Incorrect! " +
-          problem[0] +
-          " + " +
-          problem[1] +
-          " != " +
-          submission +
-          " Correct Answer: " +
-          (problem[0] + problem[1])
-      );
       setFeedback("Incorrect! ❌");
       if (submission === "") {
         // change .push to use setAnswerLog
@@ -135,7 +115,7 @@ function Quiz() {
   }
 
   function handleKeyDown(e) {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" || e.key === " ") {
       submitIt();
     }
   }
@@ -147,9 +127,10 @@ function Quiz() {
       ) : (
         <div>
           <Timer onTimeUp={handleTimeUp} />
-          <div className="bg-white max-w-[300px] min-h-[400px] border-2 border-gray-200 p-4 rounded-md flex flex-col justify-center items-center relative mx-auto shadow-md shadow-red-950/50">
+          <QuizCard>
             <p className="text-8xl font-expose">{question}</p>
             <input
+              autoFocus
               className="border-2 border-black"
               value={submission}
               onChange={(e) => setSubmission(e.target.value)}
@@ -180,19 +161,8 @@ function Quiz() {
                 <CoolButton onClick={restartQuiz} buttonLabel={"New Game"} />
               </div>
             )}
-            <span className="text-3xl absolute top-3 left-3">♠</span>
-            <span className="text-3xl absolute top-3 right-3">♥</span>
-            <span className="text-3xl absolute left-3 bottom-3">♦</span>
-            <span className="text-3xl absolute bottom-3 right-3">♣</span>
-          </div>
-          <ul>
-            {answerLog.map((item, index) => (
-              <li key={index}>
-                {"Q" + (index + 1) + ": "}
-                {item}
-              </li>
-            ))}
-          </ul>
+          </QuizCard>
+          {answerLog.length > 0 && <Logs answerLog={answerLog} />}
         </div>
       )}
     </>

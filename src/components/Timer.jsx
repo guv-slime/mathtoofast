@@ -16,7 +16,7 @@ function Timer({ onTimeUp }) {
   }, [timeLeft, onTimeUp]);
 
   return (
-    <div className="timer font-expose text-4xl absolute -rotate-12 z-10 text-white bg-black/80 w-64 text-center p-4">
+    <div className="timer font-expose text-4xl absolute -rotate-3 z-10 text-black w-64 text-center p-4 left-1/2 -translate-x-1/2">
       Time Left: {timeLeft}s
     </div>
   );
