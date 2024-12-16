@@ -9,8 +9,12 @@ const nums = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
 ];
 
-function printProblem(x, y) {
-  return x + "+" + y;
+function printProblem(x, y, probType) {
+  if (probType === "+") {
+    return x + "+" + y;
+  } else {
+    return x + "-" + y;
+  }
 }
 
 function createProblem(arr) {
@@ -26,13 +30,22 @@ function Quiz() {
   const [isQuizActive, setIsQuizActive] = useState(false);
   const [submission, setSubmission] = useState("");
   const [problem, setProblem] = useState(createProblem(nums));
+  const [problemType, setProblemType] = useState("+");
   const [score, setScore] = useState(0);
   const [answerLog, setAnswerLog] = useState([]);
   const [feedback, setFeedback] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [highScore, setHighScore] = useState(0);
 
-  const question = printProblem(problem[0], problem[1]);
+  const question = printProblem(problem[0], problem[1], problemType);
+
+  function addOrSubtract() {
+    if (Math.floor(Math.random() * 2) === 0) {
+      setProblemType("+");
+    } else {
+      setProblemType("-");
+    }
+  }
 
   function startQuiz() {
     setIsQuizStarted(true);
@@ -44,7 +57,7 @@ function Quiz() {
     setIsQuizStarted(false);
     setIsQuizActive(true);
     setSubmission("");
-    setProblem(createProblem(nums));
+    newProblem();
     setScore(0);
     setAnswerLog([]);
   }
@@ -65,41 +78,75 @@ function Quiz() {
       return;
     }
 
-    if (problem[0] + problem[1] == submission) {
-      setScore(score + 1);
-      setFeedback("Correct! ✅");
-      // change .push to use setAnswerLog
-      answerLog.push(
-        "Correct! " + problem[0] + " + " + problem[1] + " = " + submission
-      );
-    } else {
-      setFeedback("Incorrect! ❌");
-      if (submission === "") {
-        // change .push to use setAnswerLog
+    // ADDITION TYPE
+    if (problemType === "+") {
+      if (problem[0] + problem[1] == submission) {
+        setScore(score + 1);
+        setFeedback("Correct! ✅");
         answerLog.push(
-          "Incorrect! " +
-            problem[0] +
-            " + " +
-            problem[1] +
-            " = No Input! |" +
-            " Correct Answer: " +
-            (problem[0] + problem[1])
+          "Correct! " + problem[0] + " + " + problem[1] + " = " + submission
         );
       } else {
-        // change .push to use setAnswerLog
+        setFeedback("Incorrect! ❌");
+        if (submission === "") {
+          answerLog.push(
+            "Incorrect! " +
+              problem[0] +
+              " + " +
+              problem[1] +
+              " = No Input! |" +
+              " Correct Answer: " +
+              (problem[0] + problem[1])
+          );
+        } else {
+          answerLog.push(
+            "Incorrect! " +
+              problem[0] +
+              " + " +
+              problem[1] +
+              " = " +
+              submission +
+              " | Correct Answer: " +
+              (problem[0] + problem[1])
+          );
+        }
+      }
+    } else {
+      // SUBTRACTION TYPE
+      if (problem[0] - problem[1] == submission) {
+        setScore(score + 1);
+        setFeedback("Correct! ✅");
         answerLog.push(
-          "Incorrect! " +
-            problem[0] +
-            " + " +
-            problem[1] +
-            " = " +
-            submission +
-            " | Correct Answer: " +
-            (problem[0] + problem[1])
+          "Correct! " + problem[0] + " - " + problem[1] + " = " + submission
         );
+      } else {
+        setFeedback("Incorrect! ❌");
+        if (submission === "") {
+          answerLog.push(
+            "Incorrect! " +
+              problem[0] +
+              " - " +
+              problem[1] +
+              " = No Input! |" +
+              " Correct Answer: " +
+              (problem[0] - problem[1])
+          );
+        } else {
+          answerLog.push(
+            "Incorrect! " +
+              problem[0] +
+              " - " +
+              problem[1] +
+              " = " +
+              submission +
+              " | Correct Answer: " +
+              (problem[0] - problem[1])
+          );
+        }
       }
     }
 
+    // end of submitIt()
     setIsVisible(true);
 
     setTimeout(() => {
@@ -111,6 +158,7 @@ function Quiz() {
   }
 
   function newProblem() {
+    addOrSubtract();
     setProblem(createProblem(nums));
   }
 
