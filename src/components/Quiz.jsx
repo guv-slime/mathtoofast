@@ -183,8 +183,6 @@ function Quiz() {
               value={submission}
               onChange={(e) => setSubmission(e.target.value)}
               onKeyDown={handleKeyDown}
-              pattern="^-?[0-9]*$"
-              inputMode="numeric"
               placeholder="Enter/Space to Submit"
             />
             <div className="font-arsenal uppercase text-center">
